@@ -4,10 +4,10 @@
 
 ## Relationship
 
-@OnetoOne
-@OneToMany
-@ManytoOne
-@ManytoMany
+`@OnetoOne`
+`@OneToMany`
+`@ManytoOne`
+`@ManytoMany`
 
 La aplicación cuenta con las siguientes clases Address, Client, ClientDetail, Course, Invoice y Student. 
 El código no cuenta con servicios, ni con controladores con el fín de centrarse y facilitar la comprención de estos conceptos. 
