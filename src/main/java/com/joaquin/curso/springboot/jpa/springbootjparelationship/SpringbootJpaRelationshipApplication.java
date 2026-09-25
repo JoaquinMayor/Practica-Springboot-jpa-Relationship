@@ -91,7 +91,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 			Set<Address> adresses = new HashSet<>();
 			adresses.add(address1);
 			adresses.add(address2);
-			client.setAddresses(adresses); //Se le pasa así las direcciones a la BD, ya que la busqueda del dato jpa terminó en el findById
+			client.setAddresses(adresses); //Se le pasa así las direcciones a la BD, ya que la búsqueda del dato jpa terminó en el findById
 			
 			clientRepository.save(client);
 			System.out.println(client);
@@ -100,7 +100,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 	}
 
 	@Transactional
-	public void removeAddres(){  //Eliminamos una dirección de un de un usuario existente
+	public void removeAddres(){  //Eliminamos una dirección de un usuario existente
 		Client client = new Client("Fran", "Moras");
 		Address address1 = new Address("Av. Colon", 1234);
 		Address address2 = new Address("Santa Fe", 2337);
@@ -112,7 +112,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 
 		Optional<Client> optionalClient = clientRepository.findById(3L);
 		//El último comando del properties ayuda a que funcione el remove en consola, porque da error, pero cuando trabajamos en web esto no sucede
-		//Para eliminar también es necesario tener el la clase address un método equals y hashCode para que lo pueda identificar bien
+		//Para eliminar también es necesario tener en la clase address un método equals y hashCode para que lo pueda identificar bien
 		optionalClient.ifPresent(cli -> {
 			cli.getAddresses().remove(address1);
 			clientRepository.save(cli);
@@ -132,12 +132,12 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 			Set<Address> adressses = new HashSet<>();
 			adressses.add(address2);
 			adressses.add(address1);
-			client.setAddresses(adressses); //Se le pasa así las direcciones a la BD, ya que la busqueda del dato jpa terminó en el findById
+			client.setAddresses(adressses); //Se le pasa así las direcciones a la BD, ya que la búsqueda del dato jpa terminó en el findById
 			
 			clientRepository.save(client);
 			System.out.println(client);
 
-			Optional<Client> optionalClient2 = clientRepository.findOnWthitAddresses(2L); //Al hacer el fetch en el llamado query ya no hace la carga perecesa
+			Optional<Client> optionalClient2 = clientRepository.findOnWthitAddresses(2L); //Al hacer el fetch en el llamado query ya no hace la carga perezosa
 			optionalClient2.ifPresent(cli -> {
 				cli.getAddresses().remove(address2);
 				clientRepository.save(cli);
@@ -162,7 +162,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 		invoice1.setClient(client);
 		invoice2.setClient(client);
 
-		clientRepository.save(client); //Se pasa para guardar solo al cliente, ya que el cliente contiene las facturas y las facturas e guardan en cascada
+		clientRepository.save(client); //Se pasa para guardar solo al cliente, ya que el cliente contiene las facturas y las facturas se guardan en cascada
 
 		System.out.println(client);
 	
@@ -184,7 +184,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 			invoice1.setClient(client);
 			invoice2.setClient(client);
 
-			clientRepository.save(client); //Se pasa para guardar solo al cliente, ya que el cliente contiene las facturas y las facturas e guardan en cascada
+			clientRepository.save(client); //Se pasa para guardar solo al cliente, ya que el cliente contiene las facturas y las facturas se guardan en cascada
 			System.out.println(client);
 		});
 
@@ -206,7 +206,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 			invoice1.setClient(client);
 			invoice2.setClient(client);
 
-			clientRepository.save(client); //Se pasa para guardar solo al cliente, ya que el cliente contiene las facturas y las facturas e guardan en cascada
+			clientRepository.save(client); //Se pasa para guardar solo al cliente, ya que el cliente contiene las facturas y las facturas se guardan en cascada
 			System.out.println(client);
 		});
 
@@ -229,11 +229,11 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 	@Transactional
 	public void oneToOne(){ //Creación de cliente y cliente  oneToOne
 		Client client = new Client("Erba","Pura");
-		clientRepository.save(client); //Como es una relación uniderteccional en este ejemplo, primero guardamos al cliente por separado
+		clientRepository.save(client); //Como es una relación unidireccional en este ejemplo, primero guardamos al cliente por separado
 
 		ClientDetail clientDetail = new ClientDetail(true, 5000);
 		clientDetail.setClient(client);
-		clientDetailRepository.save(clientDetail); //Aca se entabla la relación
+		clientDetailRepository.save(clientDetail); //Acá se entabla la relación
 	}
 
 	@Transactional
@@ -242,8 +242,8 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 		clientOptional.ifPresent(client->{
 		 ClientDetail clientDetail = new ClientDetail(true, 5000);
 		 clientDetail.setClient(client);
-		 clientDetailRepository.save(clientDetail); //Aca se entabla la relación
-		System.out.println(clientDetail); //Al ser oneToOne, osea al pasar solo un dato no hace carga perezosa, se obtiene directamente al recuperar el dato ya ya sea del cliente como del clientDetail
+		 clientDetailRepository.save(clientDetail); //Acá se entabla la relación
+		System.out.println(clientDetail); //Al ser oneToOne, o sea al pasar solo un dato no hace carga perezosa, se obtiene directamente al recuperar el dato ya sea del cliente como del clientDetail
 		});
 	}
 
@@ -268,7 +268,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 		Student student1 = new Student("Jano","Pura");
 		Student student2 = new Student("Elva","Doe");
 
-		Course course1 = new Course("Curso de Java maste","Andrés");
+		Course course1 = new Course("Curso de Java master","Andrés");
 		Course course2 = new Course("Curso de SpringBoot master","Andrés");
 
 		student1.setCourses(Set.of(course1,course2));
@@ -281,7 +281,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 	}
 
 	@Transactional
-	public void manyToManyFindById(){//Busqueda de estudiantes y cursos y se los enlaza
+	public void manyToManyFindById(){//Búsqueda de estudiantes y cursos y se los enlaza
 		Optional<Student> studentOptional1 = studentRepository.findById(1L);
 		Optional<Student> studentOptional2 = studentRepository.findById(2L);
 
@@ -301,7 +301,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 	}
 
 	@Transactional
-	public void manyToManyRemoveFindById(){ //Busqueda de estudiantes y cursos y se le quita un curso
+	public void manyToManyRemoveFindById(){ //Búsqueda de estudiantes y cursos y se le quita un curso
 		Optional<Student> studentOptional1 = studentRepository.findById(1L);
 		Optional<Student> studentOptional2 = studentRepository.findById(2L);
 
@@ -340,7 +340,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 		Student student1 = new Student("Jano","Pura");
 		Student student2 = new Student("Elva","Doe");
 
-		Course course1 = new Course("Curso de Java maste","Andrés");
+		Course course1 = new Course("Curso de Java master","Andrés");
 		Course course2 = new Course("Curso de SpringBoot master","Andrés");
 
 		student1.addCourse(course1);
@@ -354,7 +354,7 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner{
 	}
 
 	@Transactional
-	public void manyToManyRemoveFindByIdBidireccional(){ //Busqueda de estudiantes y cursos y se le quita un curso de manera bidireccional
+	public void manyToManyRemoveFindByIdBidireccional(){ //Búsqueda de estudiantes y cursos y se le quita un curso de manera bidireccional
 		Optional<Student> studentOptional1 = studentRepository.findById(1L);
 		Optional<Student> studentOptional2 = studentRepository.findById(2L);
 

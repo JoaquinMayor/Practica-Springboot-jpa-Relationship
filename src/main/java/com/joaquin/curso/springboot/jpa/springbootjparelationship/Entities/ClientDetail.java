@@ -20,7 +20,7 @@ public class ClientDetail {
     private Integer points;
 
     @OneToOne
-    @JoinColumn(name="id_cliente") //El join colum en las relaciones bidireccionales va donde se se pone la forignkey
+    @JoinColumn(name="id_cliente") //El join column en las relaciones bidireccionales va donde se pone la foreign key
     private Client client;
      
    

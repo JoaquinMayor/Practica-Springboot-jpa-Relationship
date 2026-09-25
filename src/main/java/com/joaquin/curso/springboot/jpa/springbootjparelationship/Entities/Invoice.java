@@ -21,7 +21,7 @@ public class Invoice {
     private Long total;
 
     @ManyToOne //Muchas facturas un cliente
-    @JoinColumn(name = "id_client") //Para especificar el nombre de la llave foranea, si no se acalara lo busca con el nombre de atributo
+    @JoinColumn(name = "id_client") //Para especificar el nombre de la llave foránea, si no se aclara lo busca con el nombre de atributo
     private Client client;
    
 

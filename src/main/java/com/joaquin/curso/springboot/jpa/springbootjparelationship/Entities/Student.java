@@ -26,7 +26,7 @@ public class Student {
     private String lastname;
     
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "tbl_alumnos_cursos", joinColumns = @JoinColumn(name="alumno_id"),//Esto es para determinar la tabla intermedia dentro de la base de datos, luego en el JounColum ponemos el nombre del atributo que en la tabla de la id de la propia tabla
+    @JoinTable(name = "tbl_alumnos_cursos", joinColumns = @JoinColumn(name="alumno_id"),//Esto es para determinar la tabla intermedia dentro de la base de datos, luego en el JoinColumn ponemos el nombre del atributo que en la tabla de la id de la propia tabla
     inverseJoinColumns = @JoinColumn(name="curso_id"), //Aquí ponemos con el que lo queremos enlazar
     uniqueConstraints = @UniqueConstraint(columnNames = {"alumno_id","curso_id"}))  //Se determina que no se puedan repetir esa combinación
     private Set<Course> courses;

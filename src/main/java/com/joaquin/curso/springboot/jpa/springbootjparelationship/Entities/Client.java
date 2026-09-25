@@ -27,19 +27,19 @@ public class Client {
     private String name;
     private String lastname;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) //Un cliente tenga muchas Direcciones (CascadeType)Cuando se crea un cliente tambien la dirección o cuando se elimina, el orphan es para eliminar cualquier dato que no quedo asociado a un cliente
-    //@JoinColumn(name = "client_id") //Esto hace que se maneje la fk con este dato de la tabla, y evita que se genera una tabla intermedia
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) //Un cliente tenga muchas Direcciones (CascadeType)Cuando se crea un cliente también la dirección o cuando se elimina, el orphan es para eliminar cualquier dato que no quedó asociado a un cliente
+    //@JoinColumn(name = "client_id") //Esto hace que se maneje la fk con este dato de la tabla, y evita que se genere una tabla intermedia
     @JoinTable(name = "tbl_clientes_to_direcciones", //Sirve para manejar nosotros de tablas intermedias ya existentes, se pone el nombre de la tabla,
     joinColumns = @JoinColumn(name="id_cliente"), //luego el nombre de la id del entity individual
-    inverseJoinColumns = @JoinColumn(name = "id_direccion"), //y luego de los entitys que estan asociados a este
+    inverseJoinColumns = @JoinColumn(name = "id_direccion"), //y luego de los entitys que están asociados a este
     uniqueConstraints = @UniqueConstraint(columnNames = {"id_direcciones"}))  //, el final determina que esa es la única en, que no puede tener otra relación
     private Set<Address> addresses; //Se crea una tabla intermedia, esta lista siempre se tiene que inicializar
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client") //Para hacer el mapeo desde los 2 lados de la facturas hay que hacer el mapeo con mappedBy, igualando al nombre del atributo dentro de factura de la clase cliente y solo se puede poner el JoinColum en la clase que tiene el ManyToOne
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client") //Para hacer el mapeo desde los 2 lados de las facturas hay que hacer el mapeo con mappedBy, igualando al nombre del atributo dentro de factura de la clase cliente y solo se puede poner el JoinColumn en la clase que tiene el ManyToOne
     private Set<Invoice> invoices;
     
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client")
-    ClientDetail clientDetail;
+    private ClientDetail clientDetail;
     
     public Client() {
         this.addresses = new HashSet<>();
@@ -98,7 +98,7 @@ public class Client {
 
     @Override
     public String toString() { //En los toString no se puede tener en los 2 el toString del otro porque sino se genera un ciclo infinito, solo lo puede tener uno de los 2
-        return "{id=" + id + ", name=" + name + ", lastname=" + lastname +", Adresses"+ addresses + ", invoices= " + invoices + ", ClientDetails=" + clientDetail + "}";
+        return "{id=" + id + ", name=" + name + ", lastname=" + lastname +", Addresses"+ addresses + ", invoices= " + invoices + ", ClientDetails=" + clientDetail + "}";
     }
 
     
